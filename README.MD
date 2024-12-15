@@ -81,12 +81,14 @@
 
 8. **Testing the API**
 
-    To test the API, use tools like Postman or CURL, or navigate to the API endpoints. For example:
+    To test the API, use tools like Rest Client, Postman or CURL, or navigate to the API endpoints. For example:
 
-    GET /api/events/ - List all events
-    POST /api/users/ - Register a new user
+    GET /api/events/list-event - List all events
+    GET /api/events/<id> - get details for a specific event
+    GET /api/events/upcoming - list upcoming events
+    POST /api/users/register/- Register a new user
     POST /api/users/login/ - Log in to the API (using token-based authentication)
-    POST /api/events/ - Create a new event
+    POST /api/events/create-event - Create a new event
                
    
  
