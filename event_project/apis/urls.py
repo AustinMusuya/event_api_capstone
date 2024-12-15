@@ -5,7 +5,10 @@ urlpatterns = [
     # path('events/create-event',views.CreateEventAPIView.as_view(),name="create-event"),
     # path('events/list-event',views.CreateEventAPIView.as_view(),name="list-event"),
     # path('events/<int:id>',views.CreateEventAPIView.as_view(),name="detail-event"),
-    # path('users/register',views.CreateEventAPIView.as_view(),name="register"),
-    # path('users/login',views.CreateEventAPIView.as_view(),name="login"),
     # path('events/upcoming',views.CreateEventAPIView.as_view(),name="upcoming-events"),
+
+    # views for user registration and login
+    path('users/register',views.RegisterUserAPIView.as_view(),name="register"),
+    path('users/login',views.LoginUserAPIView.as_view(),name="login"),
+    
 ]
