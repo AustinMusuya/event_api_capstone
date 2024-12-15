@@ -1,0 +1,18 @@
+POST http://127.0.0.1:8000/api/users/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "austinmusuya245@gmail.com",
+    "password": "Chrislil1!"
+}
+#########
+
+
+
+POST http://127.0.0.1:8000/api/users/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "admin",
+    "password": "4796"
+}
