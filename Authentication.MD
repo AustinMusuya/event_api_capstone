@@ -45,7 +45,9 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication'
     ],
 }
+
 3. **Create Authentication Views**
+
 User Registration
 In your views.py, create a registration view:
 
@@ -184,9 +186,10 @@ class LogoutAPIView(views.APIView):
             status=status.HTTP_200_OK
         )
 
-How to Test Authentication
+# How to Test Authentication
 
 1. **Register a User**
+
 Use Postman or curl to send a POST request to the /api/users/register/ endpoint with the following body:
 
 json
@@ -204,7 +207,9 @@ json
   "email": "user@example.com",
   "token": "generated-authentication-token"
 }
+
 2. **Login a User**
+
 Send a POST request to the /api/users/login/ endpoint with the following body:
 
 json
@@ -220,12 +225,14 @@ json
 }
 
 3. **Access Protected Endpoints**
+
 Use the generated token to access protected endpoints. Send a GET request to the /api/events/ or any other protected endpoint, including the token in the Authorization header as a Bearer token:
 
 bash
 curl -X GET /api/events/ -H "Authorization: Bearer your-auth-token"
 
 4. **Logout a User**
+
 Send a POST request to /api/users/logout/ with the token in the body to invalidate the session:
 
 json
