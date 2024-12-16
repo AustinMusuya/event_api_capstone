@@ -17,7 +17,8 @@ Token Usage: The token is passed in the Authorization header as a Bearer token f
 
 User Logout: The user can log out by invalidating the token, ensuring no further access without re-authentication.
 
-Authentication Implementation Steps
+# Authentication Implementation Steps
+
 
 1. **Install Required Libraries**
 
@@ -39,12 +40,14 @@ INSTALLED_APPS = [
 ]
 
 # Authentication settings
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication'
     ],
 }
+
 
 3. **Create Authentication Views**
 
@@ -153,6 +156,8 @@ urlpatterns = [
     path('users/register',views.RegisterUserAPIView.as_view(),name="register"),
     path('users/login',views.LoginUserAPIView.as_view(),name="login"),
 ]
+
+
 4. **Protect API Endpoints**
 
 To protect endpoints, use the IsAuthenticated permission class:
@@ -168,6 +173,7 @@ class EventListAPIView(views.APIView):
     return Response({'message': 'This is a protected view.'})
 
 In this example, only authenticated users can access the protected_view.
+
 
 5. **User Logout**
 
