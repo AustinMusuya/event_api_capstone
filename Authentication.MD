@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 ]
 
-# Authentication settings
+**Authentication settings**
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -150,11 +150,14 @@ class LoginUserAPIView(views.APIView):
     
 
 
-# Add the following to your urls.py
+**Add the following to your urls.py**
 urlpatterns = [
+
     # views for user registration and login
     path('users/register',views.RegisterUserAPIView.as_view(),name="register"),
     path('users/login',views.LoginUserAPIView.as_view(),name="login"),
+    path('users/logout/',views.LogoutAPIView.as_view(),name="logout"),
+
 ]
 
 
