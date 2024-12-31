@@ -89,18 +89,41 @@ The API should now be running at http://127.0.0.1:8000/.
 
     To test the API, use tools like Rest Client (my personal favourite), Postman or CURL, or navigate to the API endpoints. For example:
 
-```bash
-GET /api/events/list-event - List all events
+    
+# API Endpoints
 
-GET /api/events/<id> - get details for a specific event
 
-GET /api/events/upcoming - list upcoming events
+### List All Events
+**Endpoint:** `GET /api/events/list-event`  
+**Description:** Retrieves a list of all events.
 
-POST /api/users/register/- Register a new user
+---
 
-POST /api/users/login/ - Log in to the API (using token-based authentication)
+### Get Event Details
+**Endpoint:** `GET /api/events/<id>`  
+**Description:** Retrieves details for a specific event.  
+**Path Parameters:**
+- `id` (string): The unique identifier of the event.
 
-POST /api/events/create-event - Create a new event
-```              
+---
+
+### List Upcoming Events
+**Endpoint:** `GET /api/events/upcoming`  
+**Description:** Retrieves a list of upcoming events.
+
+---
+
+### Create a New Event
+**Endpoint:** `POST /api/events/create-event`  
+**Description:** Creates a new event.  
+**Request Body:**  
+```json
+{
+  "name": "string",
+  "date": "string",
+  "location": "string",
+  "description": "string"
+}
+            
    
  
