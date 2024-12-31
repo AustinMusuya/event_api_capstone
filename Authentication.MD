@@ -52,18 +52,19 @@ REST_FRAMEWORK = {
 }
 ```
 
-3. **Create Authentication Views**
+3. **Create Serializer Classes for Authentication**
 
-User Registration
+User Registration & Login
 
-In your views.py, create a registration view:
+In your serializers.py, create a registration & login serializer classes:
 
 ```python
-from rest_framework import views, status
-from rest_framework.authentication import TokenAuthentication, SessionAuthentication, authenticate
-from rest_framework.response import Response
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from .models import Event
 from rest_framework import serializers
+from rest_framework.authtoken.models import Token
+
+User = get_user_model()
 
 class RegisterUserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -80,6 +81,33 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         new_user.save()
         # Generate token for the new user
         token = Token.objects.get_or_create(user=new_user)
+
+
+class LoginSerializer(serializers.ModelSerializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+
+```
+
+4. **Create Authentication Views**
+
+User Registration
+
+In your views.py, create a registration view:
+
+```python
+from django.contrib.auth import get_user_model
+from rest_framework import serializers
+from rest_framework import views, status
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication, authenticate
+from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from .serializers import LoginSerializer, RegisterUserSerializer
+
 
 class RegisterUserAPIView(views.APIView):
     serializer_class = RegisterUserSerializer
@@ -169,7 +197,7 @@ urlpatterns = [
 ]
 ```
 
-4. **Protect API Endpoints**
+5. **Protect API Endpoints**
 
 To protect endpoints, use the IsAuthenticated permission class:
 
@@ -181,18 +209,20 @@ from rest_framework.authentication import TokenAuthentication, SessionAuthentica
 class EventListAPIView(views.APIView):
     authentication_classes = [SessionAuthentication, TokenAuthentication]
     permission_classes = [IsAuthenticated]
-    
+
     return Response({'message': 'This is a protected view.'})
 ```
 
 In this example, only authenticated users can access the protected_view.
 
 
-5. **User Logout**
+6. **User Logout**
 
 For logout functionality, doesn’t require explicit logout functionality (since the token is simply invalidated after expiry), you can implement logout by allowing token deletion on the client side.
 
 Here’s an example view that can be used for logging out:
+
+In your views.py file
 
 ```python
 class LogoutAPIView(views.APIView):
