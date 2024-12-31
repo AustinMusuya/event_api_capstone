@@ -87,9 +87,9 @@ The API should now be running at http://127.0.0.1:8000/.
 
 8. **Testing the API**
 
-    To test the API, use tools like Rest Client (my personal favourite), Postman or CURL, or navigate to the API endpoints. For example:
+    To test the API, use tools like Rest Client (my personal favourite), Postman or CURL, or navigate to the API endpoints.
 
-    
+
 # API Endpoints
 
 
