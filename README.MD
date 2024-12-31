@@ -64,6 +64,8 @@ DATABASES = {
    Run the migrations to set up the database schema:
 
 ```bash
+python manage.py makemigrations
+
 python manage.py migrate
 ```
 
