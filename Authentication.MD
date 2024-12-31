@@ -181,6 +181,7 @@ from rest_framework.authentication import TokenAuthentication, SessionAuthentica
 class EventListAPIView(views.APIView):
     authentication_classes = [SessionAuthentication, TokenAuthentication]
     permission_classes = [IsAuthenticated]
+    
     return Response({'message': 'This is a protected view.'})
 ```
 
@@ -212,7 +213,7 @@ class LogoutAPIView(views.APIView):
 
 1. **Register a User**
 
-Use Postman or curl to send a POST request to the /api/users/register/ endpoint with the following body:
+Use Postman, Curl or Rest Client (my personal favourite) to send a POST request to the /api/users/register/ endpoint with the following body:
 
 ```bash
 json
