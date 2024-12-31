@@ -24,37 +24,41 @@ User Logout: The user can log out by invalidating the token, ensuring no further
 
 Install the required dependencies to implement authentication requirements.txt file:
 
-bash
+```bash
     pip install -r requirements.txt
-
+```
 
 2. **Update Django Settings**
 
 In your settings.py, add the following apps:
 
-
+```python
 INSTALLED_APPS = [
     # Other apps
     'rest_framework',
     'rest_framework.authtoken',
 ]
+```
+
 
 **Authentication settings**
 
+```python
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication'
     ],
 }
-
+```
 
 3. **Create Authentication Views**
 
 User Registration
+
 In your views.py, create a registration view:
 
-
+```python
 from rest_framework import views, status
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication, authenticate
 from rest_framework.response import Response
@@ -108,10 +112,12 @@ class RegisterUserAPIView(views.APIView):
             )
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+```
     
 User Login
 Next, create the login view.
 
+```python
 class LoginUserAPIView(views.APIView):
     serializer_class = LoginSerializer
 
@@ -147,10 +153,12 @@ class LoginUserAPIView(views.APIView):
                 )
 
         return Response({'Message': 'Invalid Username and Password'}, status=status.HTTP_401_UNAUTHORIZED)
-    
+```    
 
 
 **Add the following to your urls.py**
+
+```python
 urlpatterns = [
 
     # views for user registration and login
@@ -159,13 +167,13 @@ urlpatterns = [
     path('users/logout/',views.LogoutAPIView.as_view(),name="logout"),
 
 ]
-
+```
 
 4. **Protect API Endpoints**
 
 To protect endpoints, use the IsAuthenticated permission class:
 
-
+```python
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication, authenticate
 
@@ -174,14 +182,18 @@ class EventListAPIView(views.APIView):
     authentication_classes = [SessionAuthentication, TokenAuthentication]
     permission_classes = [IsAuthenticated]
     return Response({'message': 'This is a protected view.'})
+```
 
 In this example, only authenticated users can access the protected_view.
 
 
 5. **User Logout**
 
-For logout functionality, doesn’t require explicit logout functionality (since the token is simply invalidated after expiry), you can implement logout by allowing token deletion on the client side. Here’s an example view that can be used for logging out:
+For logout functionality, doesn’t require explicit logout functionality (since the token is simply invalidated after expiry), you can implement logout by allowing token deletion on the client side.
 
+Here’s an example view that can be used for logging out:
+
+```python
 class LogoutAPIView(views.APIView):
     authentication_classes = [SessionAuthentication, TokenAuthentication]
     permission_classes = [IsAuthenticated]
@@ -194,6 +206,7 @@ class LogoutAPIView(views.APIView):
             },
             status=status.HTTP_200_OK
         )
+```
 
 # How to Test Authentication
 
@@ -201,6 +214,7 @@ class LogoutAPIView(views.APIView):
 
 Use Postman or curl to send a POST request to the /api/users/register/ endpoint with the following body:
 
+```bash
 json
 {
   "username": "example_user",
@@ -216,11 +230,15 @@ json
   "email": "user@example.com",
   "token": "generated-authentication-token"
 }
+```
+
 
 2. **Login a User**
 
 Send a POST request to the /api/users/login/ endpoint with the following body:
 
+
+```bash
 json
 {
   "username": "example_user",
@@ -232,18 +250,22 @@ json
 {
   "token": "generated-authentication-token"
 }
+```
+
 
 3. **Access Protected Endpoints**
 
 Use the generated token to access protected endpoints. Send a GET request to the /api/events/ or any other protected endpoint, including the token in the Authorization header as a Bearer token:
 
-bash
+```bash
 curl -X GET /api/events/ -H "Authorization: Bearer your-auth-token"
+```
 
 4. **Logout a User**
 
 Send a POST request to /api/users/logout/ with the token in the body to invalidate the session:
 
+```bash
 json
 {
   "token": "your-auth-token"
@@ -254,3 +276,4 @@ json
 {
   "message": "Logout successful"
 }
+```
