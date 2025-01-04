@@ -263,7 +263,6 @@ json
 }
 ```
 
-
 2. **Login a User**
 
 Send a POST request to the /api/users/login/ endpoint with the following body:
@@ -279,20 +278,18 @@ Response:
 
 json
 {
-  "token": "generated-authentication-token"
+    "message": "New user Registration successful!",
+    "user":
+    {
+        "id": 1,
+        "username": "example_user",
+        "email": "user@example.com"
+    },
+    "token": "generated-authentication-token"
 }
 ```
 
-
-3. **Access Protected Endpoints**
-
-Use the generated token to access protected endpoints. Send a GET request to the /api/events/ or any other protected endpoint, including the token in the Authorization header as a Bearer token:
-
-```bash
-curl -X GET /api/events/ -H "Authorization: Bearer your-auth-token"
-```
-
-4. **Logout a User**
+3. **Logout a User**
 
 Send a POST request to /api/users/logout/ with the token in the body to invalidate the session:
 
@@ -307,4 +304,12 @@ json
 {
   "message": "Logout successful"
 }
+```
+
+4. **Access Protected Endpoints**
+
+Use the generated token to access protected endpoints. Send a GET request to the /api/events/ or any other protected endpoint, including the token in the Authorization header as a Bearer token:
+
+```bash
+curl -X GET /api/events/ -H "Authorization: Token *your-auth-token*"
 ```

@@ -8,7 +8,10 @@
 2. **MySQL** (For production deployment)  
    You can install MySQL locally or use an external service.
 
-3. **Virtual Environment (Recommended)**  
+3. **Git**: Recommended for version control. 
+   You can install from the official git website
+
+4. **Virtual Environment (Recommended)**  
    Use a virtual environment to manage dependencies and keep your project isolated from other Python projects.
 
 ---
@@ -17,24 +20,51 @@
 
 1. **Clone the Repository**
 
-   Clone the repository to your local machine:
+What does this mean?
+You’re copying the project from an online location (GitHub) to your computer so you can work on it.
+
+Open the Terminal (on Mac/Linux) or Command Prompt (on Windows).
+
+On Mac, press Command + Space, type Terminal, and hit Enter.
+
+On Windows, press the Windows key, type cmd, and hit Enter.
+
+Type or copy-paste the following commands:
+
+Terminal
 
 ```bash
 git clone https://github.com/AustinMusuya/event_api_capstone.git
-
-cd event-management-api
 ```
-2. **Create a Virtual Environment**
 
-   Create & activate a Virtual Environment
+Press Enter. This will download the project into a folder called even_api_capstone.
+
+Navigate to the project folder by typing:
+
+Terminal
 
 ```bash
+cd event-_pi_capstone
+```
+
+2. **Create a Virtual Environment**
+
+Create & activate a Virtual Environment
+
+Terminal
+
+```bash
+# On Mac or Linux use: 
 python3 -m venv venv
 source venv/bin/activate   
-
-# On Windows use: 
-venv\Scripts\activate
 ```
+
+```bash
+# On Windows use: 
+python -m venv venv
+venv/Scripts/activate
+```
+
 3. **Install Dependancies**
 
    Install the required Python packages:
@@ -42,9 +72,12 @@ venv\Scripts\activate
 ```bash
 pip install -r requirements.txt
 ```
+
 4. **Configure the Database**
 
-   Set up your MySQL database (or SQLite for development). Update the DATABASES configuration in event_project/settings.py with the correct credentials.
+   Set up your MySQL database (or SQLite for development). Update the DATABASES configuration in `event_project/settings.py` 
+
+For MySQL Database settings:
 
 ```python
 DATABASES = {
@@ -59,13 +92,28 @@ DATABASES = {
    }
 ```
 
+OR
+
+For SQLite Database settings:
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+```
+
 5. **Apply Migrations**
 
    Run the migrations to set up the database schema:
 
 ```bash
 python manage.py makemigrations
+```
 
+```bash
 python manage.py migrate
 ```
 
