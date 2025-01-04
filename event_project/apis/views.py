@@ -71,7 +71,7 @@ class LoginUserAPIView(views.APIView):
                 token, created = Token.objects.get_or_create(user=user)
                 return Response(
                     {
-                        'message': 'Login succesful.',
+                        'message': 'Login successful.',
                         'user': user_serializer.data,
                         'token': token.key
                     },
@@ -81,9 +81,6 @@ class LoginUserAPIView(views.APIView):
         return Response({'Message': 'Invalid Username and Password'}, status=status.HTTP_401_UNAUTHORIZED)
     
 
-
-
-
 class LogoutAPIView(views.APIView):
     authentication_classes = [SessionAuthentication, TokenAuthentication]
     permission_classes = [IsAuthenticated]
@@ -92,7 +89,7 @@ class LogoutAPIView(views.APIView):
 
         return Response(
             {
-                'message': "logout successful"
+                'message': "Logout successful"
             },
             status=status.HTTP_200_OK
         )
