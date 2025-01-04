@@ -44,7 +44,7 @@ Navigate to the project folder by typing:
 Terminal
 
 ```bash
-cd event-_pi_capstone
+cd event_api_capstone
 ```
 
 2. **Create a Virtual Environment**
