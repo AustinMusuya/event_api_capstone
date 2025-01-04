@@ -66,6 +66,13 @@ from rest_framework.authtoken.models import Token
 
 User = get_user_model()
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'password']
+        extra_kwargs = {"password": {"write_only":True}}
+
+
 class RegisterUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -106,7 +113,7 @@ from rest_framework.authentication import TokenAuthentication, SessionAuthentica
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from .serializers import LoginSerializer, RegisterUserSerializer
+from .serializers import LoginSerializer, RegisterUserSerializer, UserSerializer
 
 
 class RegisterUserAPIView(views.APIView):
@@ -168,7 +175,7 @@ class LoginUserAPIView(views.APIView):
             if user:
                 authenticated_user = User.objects.get(username=request.data['username'])
 
-                serializer = self.serializer_class(authenticated_user)
+                serializer = UserSerializer(authenticated_user)
 
                 token, created = Token.objects.get_or_create(user=user)
                 return Response(
