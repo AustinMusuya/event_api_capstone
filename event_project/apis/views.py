@@ -7,7 +7,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.views import ObtainAuthToken
-from .serializers import LoginSerializer, RegisterUserSerializer, EventSerializer
+from .serializers import LoginSerializer, RegisterUserSerializer, EventSerializer, UserSerializer
 
 # Create your views here.
 User = get_user_model()
@@ -30,12 +30,12 @@ class RegisterUserAPIView(views.APIView):
             user = User.objects.get(username=request.data['username'])
             token = Token.objects.get(user=user)
 
-            serializer = self.serializer_class(user)
+            user_serializer = self.serializer_class(user)
 
             return Response(
                 {
                     'message': 'New user Registration successful!',
-                    'user': serializer.data,
+                    'user': user_serializer.data,
                     'token': token.key
                 },
                 status=status.HTTP_201_CREATED
@@ -65,13 +65,14 @@ class LoginUserAPIView(views.APIView):
             if user:
                 authenticated_user = User.objects.get(username=request.data['username'])
 
-                serializer = self.serializer_class(authenticated_user)
+                # Use the UserSerializer class instead to return response that doesn't show the user password.
+                user_serializer = UserSerializer(authenticated_user)
 
                 token, created = Token.objects.get_or_create(user=user)
                 return Response(
                     {
                         'message': 'Login succesful.',
-                        'user': serializer.data,
+                        'user': user_serializer.data,
                         'token': token.key
                     },
                     status=status.HTTP_200_OK
