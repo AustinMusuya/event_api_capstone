@@ -302,7 +302,7 @@ json
 
 3. **Logout a User**
 
-Send a POST request to /api/users/logout/ with the token in the body to invalidate the session:
+Send a GET request to /api/users/logout/ with the token in the body to invalidate the session:
 
 ```bash
 json
