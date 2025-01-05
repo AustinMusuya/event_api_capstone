@@ -10,9 +10,7 @@ class Event(models.Model):
     description = models.TextField()
     date = models.DateTimeField()
     location = models.CharField(max_length=150)
-    price = models.FloatField(default=0.00)
-    requires_payment = models.BooleanField(default=False)
-    requires_rsvp = models.BooleanField(default=False)
+    ticket_price = models.FloatField(default=0.00)
     organizer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='event_organizer')
 
     def clean(self):
