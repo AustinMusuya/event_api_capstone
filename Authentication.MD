@@ -289,7 +289,7 @@ Response:
 
 json
 {
-    "message": "User login successful!",
+    "message": "user logged in successfully!",
     "user":
     {
         "id": 1,
@@ -313,7 +313,7 @@ Response:
 
 json
 {
-  "message": "Logout successful!"
+  "message": "user logged out successfully!"
 }
 ```
 
