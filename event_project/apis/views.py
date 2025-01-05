@@ -34,7 +34,7 @@ class RegisterUserAPIView(views.APIView):
 
             return Response(
                 {
-                    'message': 'New user Registration successful!',
+                    'message': 'New user registration successful!',
                     'user': user_serializer.data,
                     'token': token.key
                 },
@@ -49,7 +49,7 @@ class LoginUserAPIView(views.APIView):
     def get(self, request):
         return Response(
             {
-                "message": "Use POST request with email & password to login user"
+                "message": "Use POST request with username & password to login user"
             },
             status=status.HTTP_200_OK
         )
@@ -71,7 +71,7 @@ class LoginUserAPIView(views.APIView):
                 token, created = Token.objects.get_or_create(user=user)
                 return Response(
                     {
-                        'message': 'Login successful.',
+                        'message': 'user logged in successfully!',
                         'user': user_serializer.data,
                         'token': token.key
                     },
@@ -89,7 +89,7 @@ class LogoutAPIView(views.APIView):
 
         return Response(
             {
-                'message': "Logout successful"
+                'message': "user logged out successfully!"
             },
             status=status.HTTP_200_OK
         )
