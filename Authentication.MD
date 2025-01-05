@@ -139,7 +139,7 @@ class RegisterUserAPIView(views.APIView):
 
             return Response(
                 {
-                    'message': 'New user Registration successful!',
+                    'message': 'New user registration successful!',
                     'user': serializer.data,
                     'token': token.key
                 },
@@ -240,7 +240,7 @@ class LogoutAPIView(views.APIView):
 
         return Response(
             {
-                'message': "logout successful"
+                'message': "Logout successful!"
             },
             status=status.HTTP_200_OK
         )
@@ -263,10 +263,14 @@ Response:
 
 json
 {
-  "id": 1,
-  "username": "example_user",
-  "email": "user@example.com",
-  "token": "generated-authentication-token"
+    "message": "New user registration successful!",
+    "user":
+    {
+        "id": 1,
+        "username": "example_user",
+        "email": "user@example.com"
+    },
+    "token": "generated-authentication-token"
 }
 ```
 
@@ -285,7 +289,7 @@ Response:
 
 json
 {
-    "message": "New user Registration successful!",
+    "message": "User login successful!",
     "user":
     {
         "id": 1,
@@ -303,13 +307,13 @@ Send a POST request to /api/users/logout/ with the token in the body to invalida
 ```bash
 json
 {
-  "token": "your-auth-token"
+  "token": "generated-authentication-token"
 }
 Response:
 
 json
 {
-  "message": "Logout successful"
+  "message": "Logout successful!"
 }
 ```
 
