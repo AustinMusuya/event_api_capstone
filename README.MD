@@ -144,36 +144,211 @@ The API should now be running at http://127.0.0.1:8000/.
 
 
 ### List All Events
-**Endpoint:** `GET /api/events/list-event`  
+**Endpoint:** `GET /api/events/list-events`  
 **Description:** Retrieves a list of all events.
 
----
+**Request Body:**  
+```bash
+Headers
+
+  {
+    Authorization: Token `generated-authentication-token`
+  }
+```
+
+```json
+{
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price": 500.00,
+}
+```
+
+**Response:**
+
+```json
+{
+"event": 
+   {
+	   "id": 1,
+      "title": "Event Title",
+      "description": "Event Description",
+      "date": "2024-12-01 14:00:00",
+      "ticket_price": 500.00,
+   },
+"message": "New event created successfully!"
+}
+```
 
 ### Get Event Details
-**Endpoint:** `GET /api/events/<id>`  
-**Description:** Retrieves details for a specific event.  
+**Endpoint:** `GET /api/events/<int:pk>`  
+**Description:** Retrieving details of a specific event will require a token from the authenticated user. 
 **Path Parameters:**
 - `id` (string): The unique identifier of the event.
 
----
+**Request Body:**  
+```bash
+Headers
+
+  {
+    Authorization: Token `generated-authentication-token`
+  }
+```
+
+**Response:**
+```json
+{
+  "id": 2,
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price":0.00,
+}
+```
 
 ### List Upcoming Events
 **Endpoint:** `GET /api/events/upcoming`  
 **Description:** Retrieves a list of upcoming events.
 
----
+**Request Body:**  
+```bash
+Headers
+
+  {
+    Authorization: Token `generated-authentication-token`
+  }
+```
+
+**Response:**
+
+```json
+{
+  "id": 1,
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price":0.00,
+}
+
+{
+  "id": 2,
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price":1000.00,
+}
+```
 
 ### Create a New Event
 **Endpoint:** `POST /api/events/create-event`  
-**Description:** Creates a new event.  
+**Description:** A new event will require a token key from the authenticated user to create the event.  
 **Request Body:**  
+
+```bash
+Headers
+
+  {
+    Authorization: Token `generated-authentication-token`
+  }
+```
+
 ```json
 {
-  "name": "string",
-  "date": "string",
-  "location": "string",
-  "description": "string"
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price": 500.00,
 }
+```
+
+**Response:**
+
+```json
+{
+"event":
+   {
+      "id": 1,
+      "title": "Event Title",
+      "description": "Event Description",
+      "date": "2024-12-01 14:00:00",
+      "ticket_price": 500.00,
+   },
+"message": "New event created successfully!"
+}
+```
             
    
- 
+### Update an Event
+**Endpoint:** `PUT /api/events/<int:pk>/edit/`  
+**Description:** An existing event will require a token key from the authenticated user to edit or update the event.  
+**Request Body:**  
+
+```bash
+Headers
+
+  {
+    Authorization: Token `generated-authentication-token`
+  }
+```
+
+```json
+{
+  "id": 1,
+  "title": "Edited Event Title",
+  "description": "Edited Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price": 500.00,
+}
+```
+
+**Response:**
+
+```json
+{
+"event":
+   {
+      "id": 1,
+      "title": "Edited Event Title",
+      "description": "Edited Event Description",
+      "date": "2024-12-01 14:00:00",
+      "ticket_price": 500.00,
+   },
+"message": "Event updated successfully!"
+}
+```
+
+### Delete an Existing Event
+**Endpoint:** `DELETE /api/events/<int:id>/delete`  
+**Description:** An existing event will require a token key from the authenticated user to delete the existing event.  
+**Request Body:**  
+
+```bash
+Headers
+
+  {
+    Authorization: Token `generated-authentication-token`
+  }
+```
+
+```json
+{
+  "id": 1,
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price": 500.00,
+}
+```
+
+**Response:**
+
+```json
+{
+
+"message": "Event deleted successfully!"
+
+}
+```
+
+
