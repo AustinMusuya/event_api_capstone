@@ -17,6 +17,9 @@ class Event(models.Model):
         if self.date.date() <= now().date():
             raise ValidationError("The event date must be set at least one day in the future.")
         
+        if self.ticket_price < 0.00:
+            raise ValidationError('Ticket price must be a positive field')
+        
     def save(self, *args, **kwargs):
         self.full_clean()  # Call clean() before saving
         super().save(*args, **kwargs)
