@@ -180,7 +180,7 @@ class LoginUserAPIView(views.APIView):
                 token, created = Token.objects.get_or_create(user=user)
                 return Response(
                     {
-                        'message': 'Login succesful.',
+                        'message': 'user logged in successfully!',
                         'user': serializer.data,
                         'token': token.key
                     },
@@ -197,8 +197,8 @@ class LoginUserAPIView(views.APIView):
 urlpatterns = [
 
     # views for user registration and login
-    path('users/register',views.RegisterUserAPIView.as_view(),name="register"),
-    path('users/login',views.LoginUserAPIView.as_view(),name="login"),
+    path('users/register/',views.RegisterUserAPIView.as_view(),name="register"),
+    path('users/login/',views.LoginUserAPIView.as_view(),name="login"),
     path('users/logout/',views.LogoutAPIView.as_view(),name="logout"),
 
 ]
@@ -240,7 +240,7 @@ class LogoutAPIView(views.APIView):
 
         return Response(
             {
-                'message': "Logout successful!"
+                'message': "user logged out successfully!"
             },
             status=status.HTTP_200_OK
         )
