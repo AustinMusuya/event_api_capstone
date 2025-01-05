@@ -156,28 +156,39 @@ Headers
   }
 ```
 
-```json
-{
-  "title": "Event Title",
-  "description": "Event Description",
-  "date": "2024-12-01 14:00:00",
-  "ticket_price": 500.00,
-}
-```
-
 **Response:**
 
 ```json
 {
-"event": 
-   {
-	   "id": 1,
-      "title": "Event Title",
-      "description": "Event Description",
-      "date": "2024-12-01 14:00:00",
-      "ticket_price": 500.00,
-   },
-"message": "New event created successfully!"
+  "id": 1,
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price":0.00,
+}
+
+{
+  "id": 2,
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price":1000.00,
+}
+
+{
+  "id": 3,
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price":1000.00,
+}
+
+{
+  "id": 4,
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price":1000.00,
 }
 ```
 
