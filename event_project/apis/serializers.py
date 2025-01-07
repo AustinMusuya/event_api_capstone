@@ -39,5 +39,5 @@ class LoginSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = '__all__'
+        fields = ['id', 'title', 'description', 'date', 'location', 'ticket_price']
 
