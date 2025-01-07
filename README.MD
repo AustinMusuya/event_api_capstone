@@ -144,7 +144,7 @@ The API should now be running at http://127.0.0.1:8000/.
 
 
 ### List All Events
-**Endpoint:** `GET /api/events/list-events`  
+**Endpoint:** `GET /api/events/list-events/`  
 **Description:** Retrieves a list of all events.
 
 **Request Body:**  
@@ -197,7 +197,7 @@ Headers
 ```
 
 ### Get Event Details
-**Endpoint:** `GET /api/events/<int:pk>`  
+**Endpoint:** `GET /api/events/<int:pk>/`  
 **Description:** Retrieving details of a specific event will require a token from the authenticated user. 
 **Path Parameters:**
 - `id` (string): The unique identifier of the event.
@@ -224,7 +224,7 @@ Headers
 ```
 
 ### List Upcoming Events
-**Endpoint:** `GET /api/events/upcoming`  
+**Endpoint:** `GET /api/events/upcoming/`  
 **Description:** Retrieves a list of upcoming events.
 
 **Request Body:**  
@@ -259,7 +259,7 @@ Headers
 ```
 
 ### Create a New Event
-**Endpoint:** `POST /api/events/create-event`  
+**Endpoint:** `POST /api/events/create-event/`  
 **Description:** A new event will require a token key from the authenticated user to create the event.  
 **Request Body:**  
 
@@ -341,7 +341,7 @@ Headers
 ```
 
 ### Delete an Existing Event
-**Endpoint:** `DELETE /api/events/<int:id>/delete`  
+**Endpoint:** `DELETE /api/events/<int:id>/delete/`  
 **Description:** An existing event will require a token key from the authenticated user to delete the existing event.  
 **Request Body:**  
 
