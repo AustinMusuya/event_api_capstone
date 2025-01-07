@@ -6,20 +6,9 @@ from django.contrib.auth import get_user_model
 # Create your models here.
 User = get_user_model()
 class Event(models.Model):
-    title = models.CharField(max_length=150)
+    title = models.CharField(max_length=150, unique=True)
     description = models.TextField()
     date = models.DateTimeField()
     location = models.CharField(max_length=150)
     ticket_price = models.FloatField(default=0.00)
     organizer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='event_organizer')
-
-    def clean(self):
-        if self.date.date() <= now().date():
-            raise ValidationError("The event date must be set at least one day in the future.")
-        
-        if self.ticket_price < 0.00:
-            raise ValidationError('Ticket price must be a positive field')
-        
-    def save(self, *args, **kwargs):
-        self.full_clean()  # Call clean() before saving
-        super().save(*args, **kwargs)
