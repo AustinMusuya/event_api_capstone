@@ -341,7 +341,7 @@ Headers
 ```
 
 ### Delete an Existing Event
-**Endpoint:** `DELETE /api/events/<int:id>/delete/`  
+**Endpoint:** `DELETE /api/events/<int:pk>/delete/`  
 **Description:** An existing event will require a token key from the authenticated user to delete the existing event.  
 **Request Body:**  
 
