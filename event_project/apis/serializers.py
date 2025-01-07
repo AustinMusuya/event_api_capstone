@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from .models import Event
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
+from datetime import datetime
 
 User = get_user_model()
 
@@ -40,4 +41,34 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = ['id', 'title', 'description', 'date', 'location', 'ticket_price']
+        extra_kwargs = {"organizer": {"read_only":True}}
+
+class CreateEventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = ['id', 'title', 'description', 'date', 'location', 'ticket_price', 'organizer']
+        extra_kwargs = {"organizer": {"read_only":True}}
+
+        def validate(self, data):
+            if data['date'] <= datetime.now():
+                raise serializers.ValidationError("Date must be set in the future.")
+            
+            if data['ticket_price'] < 0.00:
+                raise serializers.ValidationError("Ticket price cannot be less than 0.00!")
+            
+            return data
+
+        def save(self, **kwargs):
+            organizer = kwargs.get('organizer')
+
+            new_event = Event.objects.create(
+                title = self.validated_data['title'],
+                description = self.validated_data['description'],
+                date = self.validated_data['date'],
+                location = self.validated_data['location'],
+                ticket_price = self.validated_data['ticket_price'],
+                organizer = organizer
+            )
+
+            new_event.save()
 
