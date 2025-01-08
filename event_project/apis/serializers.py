@@ -40,14 +40,14 @@ class LoginSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ['id', 'title', 'description', 'date', 'location', 'ticket_price']
-        extra_kwargs = {"organizer": {"read_only":True}}
+        fields = ['id', 'title', 'description', 'date', 'location', 'ticket_price', 'organizer']
+        extra_kwargs = {'organizer': {'read_only':True}}
 
 class CreateEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = ['id', 'title', 'description', 'date', 'location', 'ticket_price', 'organizer']
-        extra_kwargs = {"organizer": {"read_only":True}}
+        extra_kwargs = {'organizer': {'read_only':True}}
 
         def validate(self, data):
             if data['date'] <= datetime.now():
