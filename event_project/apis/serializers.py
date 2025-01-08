@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from .models import Event
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
-from datetime import datetime
+from django.utils.timezone import now
 
 User = get_user_model()
 
@@ -50,7 +50,7 @@ class CreateEventSerializer(serializers.ModelSerializer):
         extra_kwargs = {'organizer': {'read_only':True}}
 
         def validate(self, data):
-            if data['date'] <= datetime.now():
+            if data['date'] <= now():
                 raise serializers.ValidationError("Date must be set in the future.")
             
             if data['ticket_price'] < 0.00:
