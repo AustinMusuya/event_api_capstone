@@ -153,24 +153,70 @@ class CreateEventAPIView(views.APIView):
 
 
 # APIView to Retrieve a specific event
-class RetrieveEventAPIView(generics.RetrieveAPIView):
+class RetrieveEventAPIView(views.APIView):
     serializer_class = EventSerializer
-    queryset = Event.objects.all()
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
+
+    def get_object(self, pk):
+        try:
+            return Event.objects.get(pk=pk)
+        except Event.DoesNotExist:
+            return Response({'Message': 'No event record available'}, status=status.HTTP_404_NOT_FOUND)
+
+    def get(self, request, pk, format=None):
+        Event = self.get_object(pk)
+        serializer = EventSerializer(Event)
+        return Response(serializer.data)
     
 
 # APIView to Update a specific event   
-class RetrieveUpdateEventAPIView(generics.RetrieveUpdateAPIView):
+class RetrieveUpdateEventAPIView(views.APIView):
     serializer_class = EventSerializer
-    queryset = Event.objects.all()
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
+    permission_classes = [IsAuthorOrReadOnly, IsAuthenticated]
+
+    def get_object(self, pk):
+        try:
+            return Event.objects.get(pk=pk)
+        except Event.DoesNotExist:
+            return Response({'Message': 'No event record available'}, status=status.HTTP_404_NOT_FOUND)
+    
+    def put(self, request, pk, format=None):
+        event = self.get_object(pk)
+        serializer = EventSerializer(event, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+
+            return Response(
+                {
+                    "event" : serializer.data,
+                    "message": "Event updated successfully!"
+                },
+                status=status.HTTP_200_OK
+            )
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # APIView to Delete a specific event
-class RetrieveDestroyEventAPIView(generics.RetrieveDestroyAPIView):
+class RetrieveDestroyEventAPIView(views.APIView):
     serializer_class = EventSerializer
-    queryset = Event.objects.all()
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
+    permission_classes = [IsAuthorOrReadOnly, IsAuthenticated]
+
+    def get_object(self, pk):
+        try:
+            return Event.objects.get(pk=pk)
+        except Event.DoesNotExist:
+            return Response({'Message': 'No event record available'}, status=status.HTTP_404_NOT_FOUND)
+
+    def delete(self, request, pk, format=None):
+        event = self.get_object(pk)
+        event.delete()
+        return Response(
+            {
+                "message": "Event deleted successfully!"
+            },
+            status=status.HTTP_204_NO_CONTENT
+        )
