@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from django.utils.timezone import now
 from .models import Event 
+from datetime import timedelta
 
 class UserAPITestCase(APITestCase):
     def test_register_user(self):
@@ -61,12 +62,13 @@ class EventAPITestCase(APITestCase):
         # Create two users: one will be the owner of the event and the other will not
         self.user = User.objects.create_user(username="testuser", password="testpassword")
         self.other_user = User.objects.create_user(username="otheruser", password="testpassword")
-        
+        future_date = now() + timedelta(days=1)
+
         # Create an event for the 'testuser' (owner)
         self.event = Event.objects.create(
             title="Test Event",
             description="This is a test event.",
-            date=now(),
+            date=future_date,
             location="Test Location",
             ticket_price=100.0,
             organizer=self.user  # Set the user who created the event
