@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.views import ObtainAuthToken
 from .serializers import LoginSerializer, RegisterUserSerializer, EventSerializer, UserSerializer, CreateEventSerializer
+from django.utils.timezone import now
 
 # Create your views here.
 User = get_user_model()
@@ -106,6 +107,26 @@ class ListEventAPIView(views.APIView):
 
     def get(self, request):
         events = Event.objects.all()
+
+        if events.exists():
+            serializer = self.serializer_class(events, many=True)
+
+            return Response(
+                {
+                    'events':serializer.data,
+                },
+                status=status.HTTP_200_OK
+            )
+        return Response({'Message': 'No event records available'}, status=status.HTTP_404_NOT_FOUND)
+    
+# APIView to List all upcoming events
+class ListEventUpcomingAPIView(views.APIView):
+    serializer_class = EventSerializer
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        events = Event.objects.filter(date__gt=now())
 
         if events.exists():
             serializer = self.serializer_class(events, many=True)
