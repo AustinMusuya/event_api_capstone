@@ -14,7 +14,7 @@ urlpatterns = [
     path('events/<int:pk>/edit/',views.RetrieveUpdateEventAPIView.as_view(),name="edit-event"),
     path('events/<int:pk>/delete/',views.RetrieveDestroyEventAPIView.as_view(),name="delete-event"),
     
-    # path('events/upcoming',views.CreateEventAPIView.as_view(),name="upcoming-events"),
+    path('events/upcoming',views.ListEventUpcomingAPIView.as_view(),name="upcoming-events"),
 
     
 ]
