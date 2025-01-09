@@ -14,6 +14,11 @@
 4. **Virtual Environment (Recommended)**  
    Use a virtual environment to manage dependencies and keep your project isolated from other Python projects.
 
+5. **REST Client Extention on (VS Code)(Highly Recommended)**  
+   Use a REST Client extention on vs code to test api endpoints. There's a sample.http file that has already been prepared for you to carry out api tests. 
+   
+   However you are still free to use Postman or Curl.
+
 ---
 
 ### Steps to Set Up the Project

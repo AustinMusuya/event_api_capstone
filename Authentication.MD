@@ -250,7 +250,7 @@ class LogoutAPIView(views.APIView):
 
 1. **Register a User**
 
-Use Postman, Curl or Rest Client (my personal favourite) to send a POST request to the /api/users/register/ endpoint with the following body:
+Use Rest Client (highly recommended), Curl or Postman to send a POST request to the /api/users/register/ endpoint with the following body:
 
 ```bash
 json
