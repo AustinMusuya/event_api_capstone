@@ -1,0 +1,96 @@
+
+# USER REGISTRATION, LOGIN AND LOGOUT ACTIONS AND ENDPOINTS
+
+# Register a new user
+POST http://127.0.0.1:8000/api/users/register/ HTTP/1.1
+content-type: application/json
+{
+    "username": "yourusername",
+    "email": "youruseremail",
+    "password": "youruserpassword"
+}
+#########
+
+# Login registered users
+POST http://127.0.0.1:8000/api/users/login/ HTTP/1.1
+content-type: application/json
+
+{
+    "username": "yourusername",
+    "password": "youruserpassword@145!"
+}
+#######
+
+# Logging out a logged in user
+GET  http://127.0.0.1:8000/api/users/logout/ HTTP/1.1
+Authorization: Token generated token
+#######
+
+
+
+
+# EVENT MANAGEMENT CRUD OPERATIONS
+
+# Creating a new event
+POST   http://127.0.0.1:8000/api/events/create-event/ HTTP/1.1
+content-type: application/json
+Authorization: Token generated token
+
+{
+  "title": "Event Title",
+  "description": "event description",
+  "date": "*set the date*",
+  "location": "Nairobi",
+  "tags":[`Add a list of tags (strings)`],
+  "ticket_price": (float-field required)
+}
+#######
+
+# listing all events
+GET  http://127.0.0.1:8000/api/events/list-events/ HTTP/1.1
+Authorization: Token generated token
+#######
+
+# listing all upcoming events
+GET  http://127.0.0.1:8000/api/events/upcoming/ HTTP/1.1
+Authorization: Token generated token
+#######
+
+# Retrieving a specific event
+GET  http://127.0.0.1:8000/api/events/1/ HTTP/1.1
+Authorization: Token generated token
+#######
+
+
+# Edit or update a specific event
+PUT  http://127.0.0.1:8000/api/events/1/edit/ HTTP/1.1
+content-type: application/json
+Authorization: Token generated token
+
+
+{
+  "title": "Event Title",
+  "description": "event description",
+  "date": "*set the date*",
+  "location": "Nairobi",
+  "tags":[`Add a list of tags (strings)`],
+  "ticket_price": (float-field required)
+}
+#######
+
+
+# Delete a specific event 
+DELETE  http://127.0.0.1:8000/api/events/3/delete/ HTTP/1.1
+content-type: application/json
+Authorization: Token generated token
+
+
+{
+  "title": "Event Title",
+  "description": "event description",
+  "date": "*set the date*",
+  "location": "Nairobi",
+  "tags":[`Add a list of tags (strings)`],
+  "ticket_price": (float-field required)
+}
+#######
