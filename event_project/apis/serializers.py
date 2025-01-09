@@ -3,6 +3,8 @@ from .models import Event
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 from django.utils.timezone import now
+from taggit.serializers import (TagListSerializerField,
+                                TaggitSerializer)
 
 User = get_user_model()
 
@@ -37,16 +39,18 @@ class LoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username', 'password']
-class EventSerializer(serializers.ModelSerializer):
+class EventSerializer(TaggitSerializer,serializers.ModelSerializer):
+    tags = TagListSerializerField(default=[])
     class Meta:
         model = Event
-        fields = ['id', 'title', 'description', 'date', 'location', 'ticket_price', 'organizer']
+        fields = ['id', 'title', 'description', 'date', 'location', 'ticket_price', 'tags', 'organizer']
         extra_kwargs = {'organizer': {'read_only':True}}
 
-class CreateEventSerializer(serializers.ModelSerializer):
+class CreateEventSerializer(TaggitSerializer,serializers.ModelSerializer):
+    tags = TagListSerializerField(default=[])
     class Meta:
         model = Event
-        fields = ['id', 'title', 'description', 'date', 'location', 'ticket_price', 'organizer']
+        fields = ['id', 'title', 'description', 'date', 'location', 'ticket_price', 'tags', 'organizer']
         extra_kwargs = {'organizer': {'read_only':True}}
 
         def validate(self, data):
@@ -67,6 +71,7 @@ class CreateEventSerializer(serializers.ModelSerializer):
                 date = self.validated_data['date'],
                 location = self.validated_data['location'],
                 ticket_price = self.validated_data['ticket_price'],
+                tags= self.validated_data['tags'],
                 organizer = organizer
             )
 
