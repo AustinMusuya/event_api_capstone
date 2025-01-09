@@ -165,6 +165,7 @@ Headers
   "description": "Event Description",
   "date": "2024-12-01 14:00:00",
   "ticket_price":0.00,
+  "tags":["event", "firstEvent"],
   "location":"Event Location",
 }
 
@@ -174,6 +175,7 @@ Headers
   "description": "Event Description",
   "date": "2024-12-01 14:00:00",
   "ticket_price":1000.00,
+  "tags":["event", "firstEvent"],
   "location":"Event Location",
 }
 
@@ -183,6 +185,7 @@ Headers
   "description": "Event Description",
   "date": "2024-12-01 14:00:00",
   "ticket_price":1000.00,
+  "tags":["event", "firstEvent"],
   "location":"Event Location",
 }
 
@@ -192,6 +195,7 @@ Headers
   "description": "Event Description",
   "date": "2024-12-01 14:00:00",
   "ticket_price":1000.00,
+  "tags":["event", "firstEvent"],
   "location":"Event Location",
 }
 ```
@@ -219,6 +223,7 @@ Headers
   "description": "Event Description",
   "date": "2024-12-01 14:00:00",
   "ticket_price":0.00,
+  "tags":["event", "firstEvent"],
   "location":"Event Location",
 }
 ```
@@ -245,6 +250,7 @@ Headers
   "description": "Event Description",
   "date": "2024-12-01 14:00:00",
   "ticket_price":0.00,
+  "tags":["event", "firstEvent"],
   "location":"Event Location",
 }
 
@@ -254,6 +260,7 @@ Headers
   "description": "Event Description",
   "date": "2024-12-01 14:00:00",
   "ticket_price":1000.00,
+  "tags":["event", "firstEvent"],
   "location":"Event Location",
 }
 ```
@@ -277,6 +284,7 @@ Headers
   "description": "Event Description",
   "date": "2024-12-01 14:00:00",
   "ticket_price": 500.00,
+  "tags":["event", "firstEvent"],
   "location":"Event Location",
 }
 ```
@@ -292,6 +300,7 @@ Headers
       "description": "Event Description",
       "date": "2024-12-01 14:00:00",
       "ticket_price": 500.00,
+      "tags":["event", "firstEvent"],
       "location":"Event Location",
    },
 "message": "New event created successfully!"
@@ -319,6 +328,7 @@ Headers
   "description": "Edited Event Description",
   "date": "2024-12-01 14:00:00",
   "ticket_price": 500.00,
+  "tags":["event", "firstEvent"],
   "location":"Edited Event Location",
 }
 ```
@@ -334,6 +344,7 @@ Headers
       "description": "Edited Event Description",
       "date": "2024-12-01 14:00:00",
       "ticket_price": 500.00,
+      "tags":["event", "firstEvent"],
       "location":"Edited Event Location",
    },
 "message": "Event updated successfully!"
@@ -360,6 +371,7 @@ Headers
   "description": "Event Description",
   "date": "2024-12-01 14:00:00",
   "ticket_price": 500.00,
+  "tags":["event", "firstEvent"],
   "location":"Event Location",
 }
 ```
