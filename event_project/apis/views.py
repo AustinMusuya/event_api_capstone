@@ -108,6 +108,13 @@ class ListEventAPIView(views.APIView):
     def get(self, request):
         events = Event.objects.all()
 
+
+        # Get tags from query params
+        tags = request.query_params.getlist('tags')  # For multiple tags
+
+        if tags:
+            events = events.filter(tags__name__in=tags).distinct() # Filter entries by tags
+
         if events.exists():
             serializer = self.serializer_class(events, many=True)
 
@@ -127,6 +134,12 @@ class ListEventUpcomingAPIView(views.APIView):
 
     def get(self, request):
         events = Event.objects.filter(date__gt=now())
+
+        # Get tags from query params
+        tags = request.query_params.getlist('tags')  # For multiple tags
+
+        if tags:
+            events = events.filter(tags__name__in=tags).distinct() # Filter entries by tags
 
         if events.exists():
             serializer = self.serializer_class(events, many=True)
