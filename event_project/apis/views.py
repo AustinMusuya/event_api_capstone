@@ -2,14 +2,11 @@ from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from .models import Event
 from .permissions import IsAuthorOrReadOnly
-from rest_framework import serializers
 from rest_framework import views, status
-from rest_framework import generics
-from rest_framework.authentication import TokenAuthentication, SessionAuthentication, authenticate, BasicAuthentication
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication, authenticate
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.authtoken.views import ObtainAuthToken
 from .serializers import LoginSerializer, RegisterUserSerializer, EventSerializer, UserSerializer, CreateEventSerializer
 from django.utils.timezone import now
 
