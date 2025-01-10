@@ -170,7 +170,7 @@ Headers
   "description": "Event Description",
   "date": "2024-12-01 14:00:00",
   "ticket_price":0.00,
-  "tags":["event", "firstEvent"],
+  "tags":["event", "firstEvent"], // add a list of tags in string format
   "location":"Event Location",
 }
 
@@ -190,7 +190,7 @@ Headers
   "description": "Event Description",
   "date": "2024-12-01 14:00:00",
   "ticket_price":1000.00,
-  "tags":["event", "firstEvent"],
+  "tags":["event", "firstEvent"], // add a list of tags in string format
   "location":"Event Location",
 }
 
