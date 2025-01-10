@@ -51,6 +51,12 @@ GET  http://127.0.0.1:8000/api/events/list-events/ HTTP/1.1
 Authorization: Token generated token
 #######
 
+# Filter events list with specific query parameters
+
+GET  http://127.0.0.1:8000/api/events/list-events/?tags=`enter tag name` HTTP/1.1
+Authorization: Token generated token
+#######
+
 # listing all upcoming events
 GET  http://127.0.0.1:8000/api/events/upcoming/ HTTP/1.1
 Authorization: Token generated token
