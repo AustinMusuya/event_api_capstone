@@ -147,6 +147,14 @@ The API should now be running at http://127.0.0.1:8000/.
 
 # API Endpoints
 
+### Setting Up Authorization in Postman
+1. Go to the **Authorization** tab in Postman.
+2. Select **OAuth 2.0** as the type.
+3. Next, go to the **Headers** tab and add the following:
+   - **Key:** `Authorization`
+   - **Value:** `Token <generated-token>`
+
+---
 
 ### List All Events
 **Endpoint:** `GET /api/events/list-events/`  
