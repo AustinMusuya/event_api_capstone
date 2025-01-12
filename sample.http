@@ -89,14 +89,4 @@ Authorization: Token generated token
 DELETE  http://127.0.0.1:8000/api/events/3/delete/ HTTP/1.1
 content-type: application/json
 Authorization: Token generated token
-
-
-{
-  "title": "Event Title",
-  "description": "event description",
-  "date": "*set the date*",
-  "location": "Nairobi",
-  "tags":[`Add a list of tags (strings)`],
-  "ticket_price": (float-field required)
-}
 #######
