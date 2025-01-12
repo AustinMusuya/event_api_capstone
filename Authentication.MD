@@ -246,22 +246,39 @@ class LogoutAPIView(views.APIView):
         )
 ```
 
-# How to Test Authentication
+
+# API Endpoints
+
+### Setting Up Authorization in Postman
+1. Go to the **Authorization** tab in Postman.
+2. Select **OAuth 2.0** as the type.
+3. Next, go to the **Headers** tab and add the following:
+   - **Key:** `Authorization`
+   - **Value:** `Token <generated-token>`
+
+---
+
+### How to Test Authentication Endpoints
 
 1. **Register a User**
 
-Use Rest Client (highly recommended), Curl or Postman to send a POST request to the /api/users/register/ endpoint with the following body:
+**Endpoint:** `POST /api/users/register/`  
+**Description:** Registers a new user and creates a token.
 
-```bash
-json
+
+**Request Body:** 
+
+```json
 {
   "username": "example_user",
   "email": "user@example.com",
   "password": "securepassword"
 }
-Response:
+```
 
-json
+**Response:**
+
+```json
 {
     "message": "New user registration successful!",
     "user":
@@ -276,18 +293,22 @@ json
 
 2. **Login a User**
 
-Send a POST request to the /api/users/login/ endpoint with the following body:
+**Endpoint:** `POST /api/users/login/`  
+**Description:** Logs in a user & creates or retrieves a token.
 
 
-```bash
-json
+**Request Body:**  
+
+```json
 {
   "username": "example_user",
   "password": "securepassword"
 }
-Response:
+```
 
-json
+**Response:**
+
+```json
 {
     "message": "user logged in successfully!",
     "user":
@@ -302,25 +323,23 @@ json
 
 3. **Logout a User**
 
-Send a GET request to /api/users/logout/ with the token in the body to invalidate the session:
+**Endpoint:** `GET /api/users/logout/`  
+**Description:** Logs out a user & deletes their token.
+
+
+**Request Body:**  
 
 ```bash
-json
-{
-  "token": "generated-authentication-token"
-}
-Response:
+Headers
 
-json
+  {
+    Authorization: Token `generated-authentication-token`
+  }
+```
+**Response:**
+
+```json
 {
   "message": "user logged out successfully!"
 }
-```
-
-4. **Access Protected Endpoints**
-
-Use the generated token to access protected endpoints. Send a GET request to the /api/events/ or any other protected endpoint, including the token in the Authorization header as a Bearer token:
-
-```bash
-curl -X GET /api/events/ -H "Authorization: Token *your-auth-token*"
 ```
