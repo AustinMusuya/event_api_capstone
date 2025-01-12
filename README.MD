@@ -156,6 +156,79 @@ The API should now be running at http://127.0.0.1:8000/.
 
 ---
 
+### How to Test Authentication
+
+1. **Register a User**
+
+Use Rest Client (highly recommended), Curl or Postman to send a POST request to the /api/users/register/ endpoint with the following body:
+
+```bash
+json
+{
+  "username": "example_user",
+  "email": "user@example.com",
+  "password": "securepassword"
+}
+Response:
+
+json
+{
+    "message": "New user registration successful!",
+    "user":
+    {
+        "id": 1,
+        "username": "example_user",
+        "email": "user@example.com"
+    },
+    "token": "generated-authentication-token"
+}
+```
+
+2. **Login a User**
+
+Send a POST request to the /api/users/login/ endpoint with the following body:
+
+
+```bash
+json
+{
+  "username": "example_user",
+  "password": "securepassword"
+}
+Response:
+
+json
+{
+    "message": "user logged in successfully!",
+    "user":
+    {
+        "id": 1,
+        "username": "example_user",
+        "email": "user@example.com"
+    },
+    "token": "generated-authentication-token"
+}
+```
+
+3. **Logout a User**
+
+Send a GET request to /api/users/logout/ with the token in the body to invalidate the session:
+
+```bash
+json
+{
+  "token": "generated-authentication-token"
+}
+Response:
+
+json
+{
+  "message": "user logged out successfully!"
+}
+```
+
+### How to Test Event Management Endpoints
+
 ### List All Events
 **Endpoint:** `GET /api/events/list-events/`  
 **Description:** Retrieves a list of all events.
