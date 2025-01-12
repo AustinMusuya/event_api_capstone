@@ -222,7 +222,7 @@ The API should now be running at http://127.0.0.1:8000/.
 3. **Logout a User**
 
 **Endpoint:** `GET /api/users/logout/`  
-**Description:** Logs out a user & delets their token.
+**Description:** Logs out a user & deletes their token.
 
 
 **Request Body:**  
