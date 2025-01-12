@@ -156,7 +156,7 @@ The API should now be running at http://127.0.0.1:8000/.
 
 ---
 
-### How to Test Authentication
+### How to Test Authentication Endpoints
 
 1. **Register a User**
 
