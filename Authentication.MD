@@ -343,3 +343,247 @@ Headers
   "message": "user logged out successfully!"
 }
 ```
+### How to Test Event Management Endpoints
+
+### List All Events
+**Endpoint:** `GET /api/events/list-events/`  
+**Description:** Retrieves a list of all events.
+
+**Request Body:**  
+```bash
+Headers
+
+  {
+    Authorization: Token `generated-authentication-token`
+  }
+```
+
+**Response:**
+
+```json
+{
+  "id": 1,
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price":0.00,
+  "tags":["event", "firstEvent"], // add a list of tags in string format
+  "location":"Event Location",
+}
+
+{
+  "id": 2,
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price":1000.00,
+  "tags":["event", "firstEvent"],
+  "location":"Event Location",
+}
+
+{
+  "id": 3,
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price":1000.00,
+  "tags":["event", "firstEvent"], // add a list of tags in string format
+  "location":"Event Location",
+}
+
+{
+  "id": 4,
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price":1000.00,
+  "tags":["event", "firstEvent"],
+  "location":"Event Location",
+}
+```
+
+### Get Event Details
+**Endpoint:** `GET /api/events/<int:pk>/`  
+**Description:** Retrieving details of a specific event will require a token from the authenticated user. 
+**Path Parameters:**
+- `id` (string): The unique identifier of the event.
+
+**Request Body:**  
+```bash
+Headers
+
+  {
+    Authorization: Token `generated-authentication-token`
+  }
+```
+
+**Response:**
+```json
+{
+  "id": 2,
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price":0.00,
+  "tags":["event", "firstEvent"],
+  "location":"Event Location",
+}
+```
+
+### List Upcoming Events
+**Endpoint:** `GET /api/events/upcoming/`  
+**Description:** Retrieves a list of upcoming events.
+
+**Request Body:**  
+```bash
+Headers
+
+  {
+    Authorization: Token `generated-authentication-token`
+  }
+```
+
+**Response:**
+
+```json
+{
+  "id": 1,
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price":0.00,
+  "tags":["event", "firstEvent"],
+  "location":"Event Location",
+}
+
+{
+  "id": 2,
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price":1000.00,
+  "tags":["event", "firstEvent"],
+  "location":"Event Location",
+}
+```
+
+### Create a New Event
+**Endpoint:** `POST /api/events/create-event/`  
+**Description:** A new event will require a token key from the authenticated user to create the event.  
+**Request Body:**  
+
+```bash
+Headers
+
+  {
+    Authorization: Token `generated-authentication-token`
+  }
+```
+
+```json
+{
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price": 500.00,
+  "tags":["event", "firstEvent"],
+  "location":"Event Location",
+}
+```
+
+**Response:**
+
+```json
+{
+"event":
+   {
+      "id": 1,
+      "title": "Event Title",
+      "description": "Event Description",
+      "date": "2024-12-01 14:00:00",
+      "ticket_price": 500.00,
+      "tags":["event", "firstEvent"],
+      "location":"Event Location",
+   },
+"message": "New event created successfully!"
+}
+```
+            
+   
+### Update an Event
+**Endpoint:** `PUT /api/events/<int:pk>/edit/`  
+**Description:** An existing event will require a token key from the authenticated user to edit or update the event.  
+**Request Body:**  
+
+```bash
+Headers
+
+  {
+    Authorization: Token `generated-authentication-token`
+  }
+```
+
+```json
+{
+  "id": 1,
+  "title": "Edited Event Title",
+  "description": "Edited Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price": 500.00,
+  "tags":["event", "firstEvent"],
+  "location":"Edited Event Location",
+}
+```
+
+**Response:**
+
+```json
+{
+"event":
+   {
+      "id": 1,
+      "title": "Edited Event Title",
+      "description": "Edited Event Description",
+      "date": "2024-12-01 14:00:00",
+      "ticket_price": 500.00,
+      "tags":["event", "firstEvent"],
+      "location":"Edited Event Location",
+   },
+"message": "Event updated successfully!"
+}
+```
+
+### Delete an Existing Event
+**Endpoint:** `DELETE /api/events/<int:pk>/delete/`  
+**Description:** An existing event will require a token key from the authenticated user to delete the existing event.  
+**Request Body:**  
+
+```bash
+Headers
+
+  {
+    Authorization: Token `generated-authentication-token`
+  }
+```
+
+```json
+{
+  "id": 1,
+  "title": "Event Title",
+  "description": "Event Description",
+  "date": "2024-12-01 14:00:00",
+  "ticket_price": 500.00,
+  "tags":["event", "firstEvent"],
+  "location":"Event Location",
+}
+```
+
+**Response:**
+
+```json
+{
+
+"message": "Event deleted successfully!"
+
+}
+```
