@@ -17,18 +17,18 @@ User = get_user_model()
 class RegisterUserAPIView(views.APIView):
     serializer_class = RegisterUserSerializer
 
-    @swagger_auto_schema(
-        operation_summary="Register a new user",
-        operation_description="Use this endpoint to register a new user by providing username, email, and password.",
-        responses={200: "OK"}
-    )
-    def get(self, request):
-        return Response(
-            {
-                'message': 'Use POST request with username, email & password to register new user'
-            },
-            status=status.HTTP_200_OK
-        )
+    # @swagger_auto_schema(
+    #     operation_summary="Register a new user",
+    #     operation_description="Use this endpoint to register a new user by providing username, email, and password.",
+    #     responses={200: "OK"}
+    # )
+    # def get(self, request):
+    #     return Response(
+    #         {
+    #             'message': 'Use POST request with username, email & password to register new user'
+    #         },
+    #         status=status.HTTP_200_OK
+    #     )
 
 
     @swagger_auto_schema(
@@ -77,18 +77,18 @@ class RegisterUserAPIView(views.APIView):
 class LoginUserAPIView(views.APIView):
     serializer_class = LoginSerializer
 
-    @swagger_auto_schema(
-        operation_summary="Login a user",
-        operation_description="Use this endpoint to login a user by providing username and password.",
-        responses={200: "OK"}
-    )
-    def get(self, request):
-        return Response(
-            {
-                "message": "Use POST request with username & password to login user"
-            },
-            status=status.HTTP_200_OK
-        )
+    # @swagger_auto_schema(
+    #     operation_summary="Login a user",
+    #     operation_description="Use this endpoint to login a user by providing username and password.",
+    #     responses={200: "OK"}
+    # )
+    # def get(self, request):
+    #     return Response(
+    #         {
+    #             "message": "Use POST request with username & password to login user"
+    #         },
+    #         status=status.HTTP_200_OK
+    #     )
     
     @swagger_auto_schema(
             operation_summary="User Login",
@@ -268,13 +268,13 @@ class CreateEventAPIView(views.APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
-    def get(self, request):
-        return Response(
-            {
-                'message': 'Use POST request with title, description, date, location & ticket_price to create a new event.'
-            },
-            status=status.HTTP_200_OK
-        )
+    # def get(self, request):
+    #     return Response(
+    #         {
+    #             'message': 'Use POST request with title, description, date, location & ticket_price to create a new event.'
+    #         },
+    #         status=status.HTTP_200_OK
+    #     )
     
     @swagger_auto_schema(
         operation_summary="Create a new event",
