@@ -25,7 +25,7 @@ schema_view = get_schema_view(
       default_version='v1',
       description="API documentation for the Event project",
       terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="contact@event.local"),
+      contact=openapi.Contact(email="amusuya57@gmail.com"),
       license=openapi.License(name="BSD License"),
    ),
    public=True,
