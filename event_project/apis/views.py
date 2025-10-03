@@ -341,8 +341,8 @@ class RetrieveUpdateDeleteEventAPIView(views.APIView):
             return Response({'Message': 'No event record available'}, status=status.HTTP_404_NOT_FOUND)
     
     @swagger_auto_schema(
-        operation_summary="Retrieve, update, or delete an event",
-        operation_description="Retrieve, update, or delete an event by its ID. Only the organizer can update or delete the event.",
+        operation_summary="Retrieve an event",
+        operation_description="Retrieve an event by its ID. Only the organizer can retrieve the event.",
         responses={200: "OK"}
     )
     def get(self, request, pk, format=None):
