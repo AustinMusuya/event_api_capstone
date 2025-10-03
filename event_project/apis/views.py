@@ -342,7 +342,7 @@ class RetrieveUpdateDeleteEventAPIView(views.APIView):
     
     @swagger_auto_schema(
         operation_summary="Retrieve an event",
-        operation_description="Retrieve an event by its ID. Only the organizer can retrieve the event.",
+        operation_description="Retrieve an event by its ID. Only logged in user can retrieve an event.",
         responses={200: "OK"}
     )
     def get(self, request, pk, format=None):
